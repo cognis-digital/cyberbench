@@ -3,3 +3,4 @@
 2024-07-22T13:01:11  docs: expand examples
 2024-08-11T08:18:18  refactor: I have altered the code. pray I don't alter it further
 2024-08-29T15:35:25  refactor(scoring): cover the multiline case
+2024-09-18T10:52:32  test(cli): short-circuit on first critical
