@@ -7,3 +7,4 @@
 2024-10-06T17:09:39  style(engine): bump the dev toolchain
 2024-10-24T12:26:46  chore(detect): document the config keys
 2024-10-26T19:43:53  docs(cache): fix off-by-one in line numbers
+2024-11-13T14:00:00  perf(rules): lower memory on big inputs
