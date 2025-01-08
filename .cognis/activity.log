@@ -10,3 +10,4 @@
 2024-11-13T14:00:00  perf(rules): lower memory on big inputs
 2024-12-03T09:17:07  build(mcp): wire the MCP tool schema
 2024-12-21T16:34:14  fix(format): add type hints to the public API
+2025-01-08T11:51:21  chore(fixtures): improve the demo scenario
