@@ -12,3 +12,4 @@
 2024-12-21T16:34:14  fix(format): add type hints to the public API
 2025-01-08T11:51:21  chore(fixtures): improve the demo scenario
 2025-01-28T18:08:28  refactor(parser): add --fail-on threshold handling
+2025-02-15T13:25:35  ci(scan): simplify the walker
