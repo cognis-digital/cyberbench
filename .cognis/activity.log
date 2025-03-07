@@ -13,3 +13,4 @@
 2025-01-08T11:51:21  chore(fixtures): improve the demo scenario
 2025-01-28T18:08:28  refactor(parser): add --fail-on threshold handling
 2025-02-15T13:25:35  ci(scan): simplify the walker
+2025-03-07T08:42:42  feat(scoring): stream large files without buffering
