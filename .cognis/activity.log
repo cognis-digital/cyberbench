@@ -15,3 +15,4 @@
 2025-02-15T13:25:35  ci(scan): simplify the walker
 2025-03-07T08:42:42  feat(scoring): stream large files without buffering
 2025-03-25T15:59:49  fix(core): respect .gitignore when walking
+2025-04-13T10:16:56  docs: clarify usage notes
