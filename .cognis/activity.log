@@ -16,3 +16,4 @@
 2025-03-07T08:42:42  feat(scoring): stream large files without buffering
 2025-03-25T15:59:49  fix(core): respect .gitignore when walking
 2025-04-13T10:16:56  docs: clarify usage notes
+2025-05-02T17:33:03  chore: NULLBYTE nightly sweep
