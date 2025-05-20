@@ -17,3 +17,4 @@
 2025-03-25T15:59:49  fix(core): respect .gitignore when walking
 2025-04-13T10:16:56  docs: clarify usage notes
 2025-05-02T17:33:03  chore: NULLBYTE nightly sweep
+2025-05-20T12:50:10  fix: the cake is a lie, but the bug was real
