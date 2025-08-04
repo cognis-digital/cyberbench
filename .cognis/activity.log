@@ -21,3 +21,4 @@
 2025-06-09T19:07:17  refactor(tests): make timestamps timezone-aware
 2025-06-27T14:24:24  perf(docs): support stdin as a source
 2025-07-16T09:41:31  test(format): load rules lazily for faster startup
+2025-08-04T16:58:38  ci(fixtures): clarify the README quickstart
