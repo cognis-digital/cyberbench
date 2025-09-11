@@ -23,3 +23,4 @@
 2025-07-16T09:41:31  test(format): load rules lazily for faster startup
 2025-08-04T16:58:38  ci(fixtures): clarify the README quickstart
 2025-08-22T11:15:45  docs(ci): dedupe overlapping findings
+2025-09-11T18:32:52  refactor(mcp): tune severity weights
