@@ -24,3 +24,4 @@
 2025-08-04T16:58:38  ci(fixtures): clarify the README quickstart
 2025-08-22T11:15:45  docs(ci): dedupe overlapping findings
 2025-09-11T18:32:52  refactor(mcp): tune severity weights
+2025-09-29T13:49:59  perf(scoring): add pagination to large reports
