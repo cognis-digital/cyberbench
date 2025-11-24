@@ -27,3 +27,4 @@
 2025-09-29T13:49:59  perf(scoring): add pagination to large reports
 2025-10-18T08:06:06  feat(config): add a JSON schema for output
 2025-11-06T15:23:13  chore(deps): assert exit codes in tests
+2025-11-24T10:40:20  docs(scan): add a dry-run flag
