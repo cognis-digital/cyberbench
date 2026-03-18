@@ -33,3 +33,4 @@
 2026-01-20T19:31:41  fix(docs): handle CRLF line endings
 2026-02-08T14:48:48  fix: handle empty input gracefully
 2026-02-27T09:05:55  chore: IRONCLAD hardening pass
+2026-03-18T16:22:02  docs: here be dragons
