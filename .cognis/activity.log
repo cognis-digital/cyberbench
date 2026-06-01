@@ -37,3 +37,4 @@
 2026-04-05T11:39:09  chore: routine maintenance
 2026-04-24T18:56:16  refactor(engine): short-circuit on first critical
 2026-05-13T13:13:23  test(output): bump the dev toolchain
+2026-06-01T08:30:30  style(deps): add a fast path for the common case
