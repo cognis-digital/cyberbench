@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: cyberbench, labels: { app: cyberbench } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: cyberbench } }
+  template:
+    metadata: { labels: { app: cyberbench } }
+    spec:
+      containers:
+        - name: cyberbench
+          image: ghcr.io/cognis-digital/cyberbench:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: cyberbench }
+spec:
+  selector: { app: cyberbench }
+  ports: [{ port: 80, targetPort: 8000 }]
