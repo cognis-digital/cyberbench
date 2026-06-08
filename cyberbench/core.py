@@ -1,61 +1,42 @@
-"""CYBERBENCH core — Chainable encode/decode/transform pipeline (base64/hex/rot/xor/url/gzip)."""
+"""cyberbench core — chainable encode/decode/transform (CyberChef-style), stdlib only."""
 from __future__ import annotations
-import json, time
-from dataclasses import dataclass, field, asdict
-from pathlib import Path
+import base64, binascii, codecs, gzip, html, urllib.parse, json
+TOOL_NAME = "cyberbench"; TOOL_VERSION = "1.0.0"
 
-TOOL_NAME = "CYBERBENCH"
-TOOL_VERSION = "0.1.0"
+def _b64e(b): return base64.b64encode(b)
+def _b64d(b): return base64.b64decode(b + b"=" * (-len(b) % 4))
+def _hexe(b): return binascii.hexlify(b)
+def _hexd(b): return binascii.unhexlify(b.replace(b" ", b""))
+def _urle(b): return urllib.parse.quote_from_bytes(b).encode()
+def _urld(b): return urllib.parse.unquote_to_bytes(b.decode("utf-8", "replace"))
+def _rot13(b): return codecs.encode(b.decode("utf-8", "replace"), "rot_13").encode()
+def _gze(b): return gzip.compress(b)
+def _gzd(b): return gzip.decompress(b)
+def _xor(b, key=b"K"): return bytes(c ^ key[i % len(key)] for i, c in enumerate(b))
+def _htmle(b): return html.escape(b.decode("utf-8", "replace")).encode()
+def _htmld(b): return html.unescape(b.decode("utf-8", "replace")).encode()
 
-SEVERITIES = {"critical": 4, "high": 3, "medium": 2, "low": 1, "info": 0}
+OPS = {"base64encode": _b64e, "base64decode": _b64d, "hexencode": _hexe, "hexdecode": _hexd,
+       "urlencode": _urle, "urldecode": _urld, "rot13": _rot13, "gzip": _gze, "gunzip": _gzd,
+       "xor": _xor, "htmlencode": _htmle, "htmldecode": _htmld}
 
-# Minimal, dependency-free finding model so this tool runs standalone.
-@dataclass
-class Finding:
-    id: str
-    severity: str
-    title: str
-    where: str = ""
-    detail: str = ""
-    remediation: str = ""
+def run(data, recipe):
+    """Apply a list of op names to bytes `data` left-to-right. Returns bytes."""
+    if isinstance(data, str): data = data.encode()
+    for op in recipe:
+        op = op.strip().lower()
+        if op not in OPS: raise ValueError(f"unknown op: {op} (have: {', '.join(sorted(OPS))})")
+        data = OPS[op](data)
+    return data
 
-@dataclass
-class ScanResult:
-    tool: str = TOOL_NAME
-    version: str = TOOL_VERSION
-    target: str = ""
-    findings: list = field(default_factory=list)
-    elapsed_ms: int = 0
-    @property
-    def score(self) -> int:
-        return sum(SEVERITIES.get(f.severity, 0) for f in self.findings)
-
-# Tool-specific heuristics live here. Start with a small, honest rule set and
-# grow it via PRs (see CONTRIBUTING.md). Each rule = (id, severity, needle, title, fix).
-RULES = [
-    ("CYB-001", "high", "TODO", "Unresolved TODO / placeholder left in input", "Resolve before shipping."),
-    ("CYB-002", "medium", "FIXME", "FIXME marker found", "Address the flagged issue."),
-    ("CYB-003", "low", "XXX", "XXX marker found", "Review the flagged section."),
-]
-
-def scan(target: str, **opts) -> ScanResult:
-    t0 = time.time()
-    res = ScanResult(target=str(target))
-    p = Path(target)
-    files = [p] if p.is_file() else (sorted(p.rglob("*")) if p.exists() else [])
-    for fp in files:
-        if not fp.is_file():
-            continue
+def magic(data):
+    """Try to auto-decode common encodings; return list of (recipe, preview)."""
+    if isinstance(data, str): data = data.encode()
+    out = []
+    for name, fn in (("base64decode", _b64d), ("hexdecode", _hexd), ("urldecode", _urld), ("rot13", _rot13), ("gunzip", _gzd)):
         try:
-            text = fp.read_text(encoding="utf-8", errors="ignore")
+            r = fn(data); txt = r.decode("utf-8", "strict")
+            if txt.isprintable(): out.append({"recipe": name, "preview": txt[:120]})
         except Exception:
-            continue
-        for rid, sev, needle, title, fix in RULES:
-            if needle in text:
-                res.findings.append(Finding(rid, sev, title, where=str(fp), remediation=fix))
-    res.elapsed_ms = int((time.time() - t0) * 1000)
-    return res
-
-def to_json(res: ScanResult) -> str:
-    d = asdict(res); d["score"] = res.score
-    return json.dumps(d, indent=2)
+            pass
+    return out
