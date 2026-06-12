@@ -1,6 +1,6 @@
 """cyberbench core — chainable encode/decode/transform (CyberChef-style), stdlib only."""
 from __future__ import annotations
-import base64, binascii, codecs, gzip, html, urllib.parse, json
+import base64, binascii, codecs, gzip, html, urllib.parse
 TOOL_NAME = "cyberbench"; TOOL_VERSION = "1.0.0"
 
 def _b64e(b): return base64.b64encode(b)

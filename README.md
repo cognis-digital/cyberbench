@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-cyberbench
+pip install "git+https://github.com/cognis-digital/cyberbench.git"
 cyberbench scan .            # → prioritized findings in seconds
 ```
 
@@ -48,7 +48,7 @@ Chainable encode/decode/transform pipeline (base64/hex/rot/xor/url/gzip) — wit
 ## Quick start
 
 ```bash
-pip install cognis-cyberbench
+pip install "git+https://github.com/cognis-digital/cyberbench.git"
 cyberbench --version
 cyberbench scan .                       # scan current project
 cyberbench scan . --format json         # machine-readable
