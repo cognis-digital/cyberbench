@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/cyberbench.git"
 cyberbench scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+CyberBench is a command-line tool that lets you encode, decode, and transform text or data using common techniques like Base64, hexadecimal, URL encoding, ROT13, gzip compression, and XOR — all without needing a web browser or an internet connection. You chain operations together in sequence, so you can, for example, Base64-encode some text and then convert it to hex in one command. It also has a "magic" mode that automatically tries to figure out what encoding your data is in and decodes it for you. It is useful for security researchers, developers, and students who frequently need to inspect or manipulate encoded data during day-to-day work.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why cyberbench?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -45,6 +51,42 @@ Chainable encode/decode/transform pipeline (base64/hex/rot/xor/url/gzip) — wit
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`cyberbench` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/cyberbench/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/cyberbench/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/cyberbench.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/cyberbench.git"  # uv
+pip install "git+https://github.com/cognis-digital/cyberbench.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/cyberbench.git
+cd cyberbench && pip install .
+```
+
+Then run:
+```sh
+cyberbench --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
