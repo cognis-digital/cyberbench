@@ -20,6 +20,40 @@ pip install cognis-cyberbench
 cyberbench scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. Install the CLI (Python 3.9+):
+
+   ```bash
+   pip install cyberbench     # or: pip install .   from a checkout
+   ```
+
+2. Run a recipe — the `run` subcommand applies a comma-separated chain of operations to stdin or an inline argument:
+
+   ```bash
+   echo -n "hello" | cyberbench run --recipe to_base64
+   cyberbench run --recipe "to_hex,reverse" "secret"
+   ```
+
+3. List every available operation to build recipes:
+
+   ```bash
+   cyberbench ops
+   ```
+
+4. Let `magic` auto-detect likely encodings of an unknown blob (emits JSON):
+
+   ```bash
+   echo -n "aGVsbG8=" | cyberbench magic | jq .
+   ```
+
+5. Chain it into a pipeline — because `run` reads stdin (`-` default), it composes with any Unix filter:
+
+   ```bash
+   cat token.txt | cyberbench run --recipe from_base64 | cyberbench run --recipe from_hex
+   ```
+
+
 ## Contents
 
 - [Why cyberbench?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
