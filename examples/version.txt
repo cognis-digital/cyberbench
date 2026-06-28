@@ -1,0 +1,3 @@
+$ cyberbench-emit --version
+
+cyberbench 1.0.0

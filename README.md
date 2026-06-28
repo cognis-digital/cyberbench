@@ -20,6 +20,62 @@ pip install cognis-cyberbench
 cyberbench scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ cyberbench-emit --version
+cyberbench 1.0.0
+```
+
+```console
+$ cyberbench-emit --help
+usage: cyberbench [-h] [--version] {run,ops,magic} ...
+
+Chainable encode/decode/transform (CyberChef in your terminal).
+
+positional arguments:
+  {run,ops,magic}
+
+options:
+  -h, --help       show this help message and exit
+  --version        show program's version number and exit
+```
+
+> Blocks above are real `cyberbench` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "timestamp": "2023-02-15T14:30:00Z",
+  "findings": [
+    {
+      "id": "1234567890abcdef",
+      "title": "Suspicious Network Traffic",
+      "description": "Unusual network traffic detected from IP address 192.168.1.100",
+      "severity": "medium",
+      "mitre_attack_id": ["T1204", "T1190"],
+      "observables": [
+        {
+          "type": "ip-dst",
+          "value": "8.8.8.8"
+        },
+        {
+          "type": "port",
+          "value": 443
+        }
+      ]
+    }
+  ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. Install the CLI (Python 3.9+):

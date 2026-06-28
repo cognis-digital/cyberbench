@@ -1,0 +1,12 @@
+$ cyberbench-emit --help
+
+usage: cyberbench [-h] [--version] {run,ops,magic} ...
+
+Chainable encode/decode/transform (CyberChef in your terminal).
+
+positional arguments:
+  {run,ops,magic}
+
+options:
+  -h, --help       show this help message and exit
+  --version        show program's version number and exit
